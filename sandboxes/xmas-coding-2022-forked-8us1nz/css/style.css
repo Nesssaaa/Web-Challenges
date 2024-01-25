@@ -1,0 +1,16 @@
+@import url("/lib/global.css");
+.headline {
+  color: crimson;
+  font-family: "Mountains of Christmas";
+}
+.text {
+  font-family: "caveat";
+}
+
+.contrasted {
+  text-shadow: 5px 4px black;
+}
+
+.back {
+  padding-top: 70px;
+}
