@@ -1,3 +1,6 @@
-// import { server } from "./server.js";
+import { server } from "./server.js";
 
-// server.listen(…
+const port = 8002;
+server.listen(port, () => {
+  console.log(`Server running at localhost:${port}/`);
+});
