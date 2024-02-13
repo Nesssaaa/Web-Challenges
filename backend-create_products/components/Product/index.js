@@ -4,7 +4,7 @@ import { ProductCard } from "./Product.styled";
 import Comments from "../Comments";
 import { StyledLink } from "../Link/Link.styled";
 import { useState } from "react";
-import { ProductForm } from "../ProductForm";
+import ProductForm from "../ProductForm";
 
 export default function Product() {
   const [isEditMode, setIsEditMode] = useState(false);

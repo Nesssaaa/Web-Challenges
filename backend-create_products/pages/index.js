@@ -23,8 +23,11 @@ export default function HomePage() {
     });
 
     if (response.ok) {
-      mutate();
+      return;
     }
+
+    mutate();
+    event.target.reset();
   }
   return (
     <>
