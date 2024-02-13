@@ -1,45 +1,34 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./ProductForm.styled";
 import { StyledButton } from "../Button/Button.styled";
-import { mutate } from "swr";
-import useSWR from "swr";
 
-export default function ProductForm() {
-  const { mutate } = useSWR();
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const productData = Object.fromEntries(formData);
-
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(productData),
-    });
-
-    if (response.ok) {
-      mutate();
-    }
-    //   const data = await response.json();
-    //   mutate("/api/products");
-    //   //router.push(`/${data._id}`);
-    //   router.push(`/`);
-  }
-
+export default function ProductForm({ value, onSubmit, isEditMode }) {
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledHeading>Add a new Fish</StyledHeading>
+    <StyledForm onSubmit={onSubmit}>
+      <StyledHeading>
+        {isEditMode ? "Edit the product" : "Add a new product"}
+      </StyledHeading>
       <StyledLabel htmlFor="name">
         Name:
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" defaultValue={value.name} />
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <input type="text" id="description" name="description" />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          defaultValue={value.description}
+        />
       </StyledLabel>
       <StyledLabel htmlFor="price">
         Price:
-        <input type="number" id="price" name="price" min="0" />
+        <input
+          type="number"
+          id="price"
+          name="price"
+          min="0"
+          defaultValue={value.price}
+        />
       </StyledLabel>
       <StyledLabel htmlFor="currency">
         Currency:
@@ -52,4 +41,14 @@ export default function ProductForm() {
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
+}
+
+//
+//<input type="text" id="name" name="name" defaultValue={value}/>
+
+{
+  /* <form>
+{isEditMode ? "Edit the product" : "Add a new product"}(
+<input type="text" id="name" name="name" defaultValue={value} />)
+</form> */
 }
